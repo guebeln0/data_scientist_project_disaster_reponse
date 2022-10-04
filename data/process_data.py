@@ -14,7 +14,7 @@ def load_data(messages_filepath, categories_filepath):
         # load messages dataset
     messages = pd.read_csv(messages_filepath, index_col='id')
     # load categories dataset
-    categories = pd.read_csv('categories.csv', index_col='id')
+    categories = pd.read_csv(categories_filepath, index_col='id')
 
     # merge datasets only keeping identical ids
     df = messages.merge(categories, on='id', how='inner')
@@ -62,7 +62,7 @@ def clean_data(df):
     # remove duplicates
     df.drop_duplicates(inplace=True)
 
-    return results
+    return df
 
 
 def save_data(df, database_filename):
