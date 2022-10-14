@@ -58,21 +58,22 @@ model = joblib.load("../models/classifier.pkl")
 def index():
 
     # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
 
+    # extract features for seond visual
     features = df.iloc[:,3:].sum().sort_values(ascending=True)
     features_counts = features.values
     features_names = features.index
 
+    # creates heatmap of correlations
     heatmap = df.iloc[:,3:].corr()
 
+    # create a mask to keep only value of the low triangle in correlation matrix
     mask = np.triu(np.ones_like(heatmap, dtype=bool))
     heatmap_LT = heatmap.mask(mask)
-    # features.corr()
-    # create visuals
-    # TODO: Below is an example - modify to create your own visuals
+
+    # Create 3 visualisation charts
     graphs = [
         {
             'data': [

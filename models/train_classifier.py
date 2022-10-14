@@ -135,6 +135,10 @@ def save_model(model, model_filepath):
 
 
 def main():
+    '''
+    Loads data, build and train a classifier models
+    Evaluates its performance and finaly saves the model in pickle format
+    '''
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))

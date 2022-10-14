@@ -66,12 +66,24 @@ def clean_data(df):
 
 
 def save_data(df, database_filename):
+    '''
+    Saves the dataframe df in an sql database
+
+    Args:
+        df: dataframe
+        database_filename: path to the file, where the database should be saved
+
+    returns: None
+    '''
     engine = create_engine('sqlite:///{}'.format(database_filename))
     df.to_sql('disaster_messages', engine, index=False)
     pass
 
 
 def main():
+    '''
+    Load clean and saves data
+    '''
     if len(sys.argv) == 4:
 
         messages_filepath, categories_filepath, database_filepath = sys.argv[1:]
