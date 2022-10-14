@@ -1,8 +1,8 @@
 # Disaster Response Pipeline Project
 
-
 ### Project description
-This project uses messages from disaster and classifies them into one of the 36 provided categories. This classification result can be used to send the message to the adequate disaster response team.
+When disaster strikes it is mostly a chaotic situation. Being able to identify relevant information for rescue teams is critical to provide a quick and adapted response during such a crisis.
+This project uses messages from disaster and classifies them into one of the 36 provided categories. This classification result can be used to send the relevant message to the adequate disaster response team.
 
 The project start with gathering and cleaning data from a csv file and stores into a database.
 A classifier model is trained on the clean data.
