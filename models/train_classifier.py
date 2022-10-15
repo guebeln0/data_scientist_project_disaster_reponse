@@ -14,6 +14,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import precision_recall_fscore_support as score
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import classification_report
+from sklearn.model_selection import GridSearchCV
 
 def load_data(database_filepath):
     '''
@@ -83,7 +84,17 @@ def build_model():
                     RandomForestClassifier(min_samples_split=2, n_estimators=20)))
                     ])
 
-    return pipeline
+
+    # specify parameters for grid search
+    parameters = {'vect__ngram_range': [(1, 1), (1, 2)],
+                  'clf__estimator__n_estimators': [5, 10, 20],
+                  'clf__estimator__min_samples_split': [2, 5]
+                 }
+
+    # create grid search object
+    cv = GridSearchCV(pipeline, param_grid=parameters)
+
+    return cv
 
 
 def evaluate_model(model, X_test, y_test, category_names):
