@@ -45,6 +45,10 @@ def clean_data(df):
     # rename the columns of `categories`
     categories.columns = category_colnames
 
+    # Replace values "2" to "1" in column "related"
+    # assuming 2 is "active" and same meaning than "1"
+    df = df.replace('2', '1', subset=['related'])
+
     # extract the values for one hot encoding and cast it as int
     # The value is the last character of each cell
     for column in categories:
@@ -76,7 +80,7 @@ def save_data(df, database_filename):
     returns: None
     '''
     engine = create_engine('sqlite:///{}'.format(database_filename))
-    df.to_sql('disaster_messages', engine, index=False)
+    df.to_sql('disaster_messages', engine, index=False, if_exists='replace')
     pass
 
 
