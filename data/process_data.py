@@ -45,10 +45,6 @@ def clean_data(df):
     # rename the columns of `categories`
     categories.columns = category_colnames
 
-    # Replace values "2" to "1" in column "related"
-    # assuming 2 is "active" and same meaning than "1"
-    df = df.replace('2', '1', subset=['related'])
-
     # extract the values for one hot encoding and cast it as int
     # The value is the last character of each cell
     for column in categories:
@@ -57,6 +53,10 @@ def clean_data(df):
 
         # convert column from string to numeric
         categories[column] = categories[column].astype(int)
+
+    # Replace values "2" to "1" in column "related"
+    # assuming 2 is "active" and same meaning than "1"
+    categories['related'].replace(2, 1, inplace=True)
 
     # drop the original categories column from current dataframe
     df.drop('categories', axis=1, inplace=True)
